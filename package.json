@@ -1,0 +1,25 @@
+{
+  "version": "1.3.0",
+  "description": "A starting point for Polymer 1.0 apps",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:PolymerElements/polymer-starter-kit.git"
+  },
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/PolymerElements/polymer-starter-kit/issues"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "merge-stream": "^1.0.0",
+    "plylog": "^0.4.0",
+    "polymer-build": "^0.1.0"
+  }
+}
