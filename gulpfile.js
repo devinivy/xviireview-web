@@ -4,7 +4,8 @@ const babel = require('gulp-babel');
 const imagemin = require('gulp-imagemin');
 const logging = require('plylog');
 const mergeStream = require('merge-stream');
-
+const webpack = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
 const polymer = require('polymer-build');
 
 // Got problems? Try logging 'em
@@ -16,7 +17,7 @@ const fork = polymer.forkStream;
 let project = new PolymerProject({
   root: process.cwd(),
   entrypoint: 'index.html',
-  shell: 'src/psk-app.html',
+  shell: 'src/components/xvii-app/index.html',
 });
 
 gulp.task('default', () => {
@@ -25,9 +26,8 @@ gulp.task('default', () => {
   let sources = project.sources()
     .pipe(project.splitHtml())
     // add compilers or optimizers here!
-    .pipe(gulpif('*.js', babel({
-      presets: ['es2015']
-    })))
+    .pipe(gulpif(/_script_[\d]+\.js$/, babel()))
+    .pipe(gulpif('*.js', webpack(webpackConfig)))
     .pipe(gulpif('*.{png,gif,jpg,svg}', imagemin({
       progressive: true, interlaced: true
     })))
